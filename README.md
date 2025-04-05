@@ -1,3 +1,5 @@
+# A collection of one-lines in different languages
+
 ## Bash
 
 Run `cargo clean` recursively
