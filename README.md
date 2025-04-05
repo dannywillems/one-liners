@@ -1,4 +1,4 @@
-# A collection of one-lines in different languages
+# A collection of one-liners in different languages
 
 ## Bash
 
