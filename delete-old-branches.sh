@@ -1,4 +1,31 @@
 #!/usr/bin/env bash
+#
+# delete-old-branches.sh - Delete git branches that haven't been updated for a specified time
+#
+# DESCRIPTION:
+#   This script safely removes local git branches that haven't had any commits for
+#   a specified period of time (default: 1 month). It includes a dry-run mode to preview
+#   which branches would be deleted before actually removing them.
+#
+# USAGE:
+#   ./delete-old-branches.sh                     # Dry run (lists branches that would be deleted)
+#   DRY_RUN=0 ./delete-old-branches.sh           # Actually delete branches
+#   
+# OPTIONS (environment variables):
+#   DRY_RUN=0             # Set to 0 to actually delete branches (default: enabled)
+#   BRANCH_AGE=1m         # Age threshold (d=days, w=weeks, m=months, default: 1m)
+#   PROTECTED_BRANCHES    # Space-separated list of branches to never delete
+#                         # (default: "main master develop compatible")
+#
+# EXAMPLES:
+#   # Delete branches older than 2 weeks, but keep "main" and "release" protected
+#   DRY_RUN=0 BRANCH_AGE=2w PROTECTED_BRANCHES="main release" ./delete-old-branches.sh
+#
+# NOTES:
+#   - Always runs in dry-run mode by default for safety
+#   - Only affects local branches, not remote branches
+#   - Branches are considered "old" based on their last commit date
+#
 
 # Default to dry run unless DRY_RUN is explicitly 0
 if [[ "$DRY_RUN" != "0" ]]; then
