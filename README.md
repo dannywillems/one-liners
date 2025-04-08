@@ -1,8 +1,11 @@
-# A collection of one-liners in different languages
+# One-Liners
+
+A collection of useful one-liners and scripts in different programming languages.
 
 ## Bash
 
-Run `cargo clean` recursively
+### Run `cargo clean` recursively
+
 ```bash
 find . -name Cargo.toml \
   -not -path "*/target/*" \
@@ -14,7 +17,10 @@ find . -name Cargo.toml \
     '
 ```
 
+### Ignore specific directories
+
 If you want to ignore `foo` and `bar` directories in any path:
+
 ```bash
 find . -name Cargo.toml \
   -not -path "*/target/*" \
@@ -27,10 +33,30 @@ find . -name Cargo.toml \
     '
 ```
 
-## Python 3 - One-Liners
+### Delete old Git branches
 
-Conversion from little (resp big) endian to big (resp. little endian):
+The repository includes a script to safely delete Git branches older than a specified age:
+
+```bash
+# Dry run mode (shows what would be deleted)
+./delete-old-branches.sh
+
+# Actually delete branches older than 1 month (default)
+DRY_RUN=0 ./delete-old-branches.sh
+
+# Delete branches older than 2 weeks with custom protected branches
+DRY_RUN=0 BRANCH_AGE=2w PROTECTED_BRANCHES="main develop" ./delete-old-branches.sh
 ```
+
+See [delete-old-branches.sh](./delete-old-branches.sh) for more details.
+
+## Python 3
+
+### Endian conversion
+
+Convert from little endian to big endian (or vice versa):
+
+```python
 s = "000000000050ab40"
 rev_s = bytearray.fromhex(s)[::-1].hex()
 ```
