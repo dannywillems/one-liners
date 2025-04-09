@@ -4,6 +4,19 @@ A collection of useful one-liners and scripts in different programming languages
 
 ## Bash
 
+### Monitor Your GitHub Pull Requests
+
+The repository includes a script to monitor the status of your open PRs in a GitHub repository:
+
+```bash
+# Run the script to monitor your open PRs
+./check-pr.sh
+```
+
+This script continuously checks your open PRs, showing their merge status and CI status. It uses the GitHub CLI, so make sure you have `gh` installed and authenticated.
+
+See [check-pr.sh](./check-pr.sh) for more details.
+
 ### Run `cargo clean` recursively
 
 ```bash
