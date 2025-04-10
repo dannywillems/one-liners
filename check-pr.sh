@@ -15,12 +15,17 @@ while true; do
         title,
         mergeable,
         bk_status: (
-            .statusCheckRollup[]? 
-            | select(.context == "buildkite/mina-o-1-labs/pr") 
+            .statusCheckRollup[]?
+            | select(.context == "buildkite/mina-o-1-labs/pr")
             | .state // "UNKNOWN"
+        ),
+        bk_url: (
+            .statusCheckRollup[]?
+            | select(.context == "buildkite/mina-o-1-labs/pr")
+            | .targetUrl // ""
         )
-    } | [.number, .title, .mergeable, .bk_status] | @tsv' | \
-    while IFS=$'\t' read -r number title mergeable bk_status; do
+    } | [.number, .title, .mergeable, .bk_status, .bk_url] | @tsv' | \
+    while IFS=$'\t' read -r number title mergeable bk_status bk_url; do
 
         pr_url="$REPO_URL/pull/$number"
 
@@ -45,6 +50,9 @@ while true; do
         echo "PR #$number: $title"
         echo "   → $state"
         echo "   🔗 $pr_url"
+        if [[ -n "$bk_url" ]]; then
+            echo "   🏗️ $bk_url"
+        fi
         echo
     done
 
