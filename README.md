@@ -4,9 +4,11 @@ A collection of useful one-liners and scripts in different programming languages
 
 ## Bash
 
-### Monitor Your GitHub Pull Requests
+### Monitor GitHub Pull Requests
 
-The repository includes a script to monitor the status of your open PRs in a GitHub repository:
+The repository includes scripts to monitor the status of GitHub PRs:
+
+#### Monitor Your Own PRs
 
 ```bash
 # Run the script to monitor your open PRs
@@ -16,6 +18,24 @@ The repository includes a script to monitor the status of your open PRs in a Git
 This script continuously checks your open PRs, showing their merge status and CI status. It uses the GitHub CLI, so make sure you have `gh` installed and authenticated.
 
 See [check-pr.sh](./check-pr.sh) for more details.
+
+#### Monitor PRs Targeting a Specific Branch
+
+```bash
+# Monitor PRs targeting the 'compatible' branch (default)
+./check-branch-pr.sh
+
+# Monitor PRs targeting a different branch
+./check-branch-pr.sh develop
+```
+
+This script monitors all open PRs targeting a specific branch. It shows PR status including:
+- Merge status (mergeable, conflicts)
+- CI status (passing, running, failed)
+- Review status (approved, changes requested, no reviews)
+- Links to the PR and CI builds
+
+See [check-branch-pr.sh](./check-branch-pr.sh) for more details.
 
 ### Run `cargo clean` recursively
 
