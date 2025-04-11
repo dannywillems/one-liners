@@ -91,6 +91,20 @@ Extract all targets from a Makefile:
 grep -E '^[a-zA-Z0-9_-]+:' Makefile | awk -F: '{print $1}'
 ```
 
+### Find and remove unused .PHONY targets
+
+The repository includes a script to find and optionally remove unused `.PHONY` targets in a Makefile:
+
+```bash
+# Dry run mode (only shows what would be removed)
+./find-unused-phony-targets.sh [path_to_makefile]
+
+# Actually remove unused .PHONY targets
+DRY_RUN=0 ./find-unused-phony-targets.sh [path_to_makefile]
+```
+
+See [find-unused-phony-targets.sh](./find-unused-phony-targets.sh) for more details.
+
 ## Python 3
 
 ### Endian conversion
