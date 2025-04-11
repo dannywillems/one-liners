@@ -2,6 +2,16 @@
 
 A collection of useful one-liners and scripts in different programming languages.
 
+## Markdown
+
+### Format Markdown with line wrapping while preserving code blocks
+
+```bash
+pandoc --wrap=auto --to=markdown --from=markdown input.md -o output.md
+```
+
+This command wraps text in a Markdown file while preserving code blocks, lists, and other special formatting.
+
 ## Bash
 
 ### Monitor GitHub Pull Requests
