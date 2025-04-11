@@ -83,6 +83,14 @@ DRY_RUN=0 BRANCH_AGE=2w PROTECTED_BRANCHES="main develop" ./delete-old-branches.
 
 See [delete-old-branches.sh](./delete-old-branches.sh) for more details.
 
+### List all Makefile targets
+
+Extract all targets from a Makefile:
+
+```bash
+grep -E '^[a-zA-Z0-9_-]+:' Makefile | awk -F: '{print $1}'
+```
+
 ## Python 3
 
 ### Endian conversion
